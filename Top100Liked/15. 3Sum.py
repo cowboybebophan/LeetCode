@@ -24,7 +24,7 @@ class Solution:
         return res
         
   """
-  # This note comes from christopherwu0529 (https://github.com/wuduhren/leetcode-python)
+  # This note comes from christopherwu0529 on LeetCode (https://github.com/wuduhren/leetcode-python)
   
   The main idea is to iterate every number in nums.
 	We use the number as a target to find two other numbers which make total zero.
