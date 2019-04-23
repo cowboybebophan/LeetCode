@@ -12,9 +12,13 @@ class Solution:
  
  Note:
  运用了递归与列表生成式
+ 递归：
  例如 digits = '23', 先将results列表初始化为[''], 第一次进入for循环后results = ["a","b","c"](""+"a",""+"b",""+"c"),
  之后进行递归，对当前results中的每个元素和下一个digit:'3'中的字母"d","e","f"分别两两叠加，
  更新results = ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+ 
+ 列表生成式：
+ list = [i + j for i in a for j in b]
  
  注意：初始化为results = ['']而不是[ ]
  
