@@ -1,2 +1,2 @@
 # LeetCodeTop100Liked
-My solution for leetcode top 100 likes problems
+My solutions for LeetCode Top100Liked problems.
