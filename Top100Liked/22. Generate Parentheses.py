@@ -12,3 +12,14 @@ class Solution:
             return parens     # parens will be something like ["(","(","(",")",")",")","(","(",".........]
         
         return generate('', n, n)
+
+"""
+Note: 
+The most import trick is that the default argument value (parens = []) is execute at define time, not runtime.
+So, in this case, every changes to parens in each recursive call, 
+will change the same list, that's why the parena will includes all the possible result.
+
+check this out: https://docs.python-guide.org/writing/gotchas/#mutable-default-arguments
+
+"""
+
