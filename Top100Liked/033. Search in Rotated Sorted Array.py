@@ -1,3 +1,4 @@
+
 class Solution:
     def search(self, nums, target):
         lo, hi = 0, len(nums) - 1
@@ -12,6 +13,8 @@ class Solution:
         return -1
 
 """
+From comment section in https://leetcode.com/problems/search-in-rotated-sorted-array/discuss/14419/Pretty-short-C%2B%2BJavaRubyPython
+
 Conidtion 1 represents when target is on the left side of mid, but target is not necessarily smaller that nums[mid]); 
 Therefore, we update hi to the left side of mid.  
 
