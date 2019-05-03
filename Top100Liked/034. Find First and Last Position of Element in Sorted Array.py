@@ -24,4 +24,9 @@ class Solution:
             return lo
         lo = search(target)
         return [lo, search(target + 1) - 1] if target in nums[lo:lo+1] else [-1,-1]
-            
+        
+        # Here, we write (target in nums[lo:lo+1]) instead of (target == nums[lo])
+        # to avoid the cases when lo is outside [0, len(nums)-1]; for example: search(5) in [2,3,4], returns lo = 3. 
+        # The condition 'target in nums[lo:lo+1]' is valid even when lo exceeds the length of nums, it returns False.
+        # For example: nums = [1,2,3] , ' 1 in nums[4:5] ' returns False. 
+        # Works for when nums=[] as well.
