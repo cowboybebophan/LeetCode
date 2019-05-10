@@ -7,8 +7,11 @@ We used the sorted function to make sure that anagrams like "aab" and "baa" are 
 Otherwise, "aab" and "baa" will be two different keys.
 
 Then we update the value of a certain key if the string we are going through right now is of the same key.
-Be careful here: instead of simply using d.get(key), we use d.get(key,[]) here because maybe the key does not exist.
-Therefore, the function returns a default value [] when the key does not exist.
+Be careful here: instead of simply using d.get(key), we use d.get(key,[]) here.
+
+When get() is called, Python checks if the specified key exists in the dict. 
+If it does, then get() returns the value of that key. 
+If the key does not exist, then get() returns the value specified in the second argument to get().
 
 """
 
