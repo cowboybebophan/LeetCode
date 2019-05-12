@@ -18,3 +18,22 @@ class Solution:
             if nums[i-1] > 0:
                 nums[i] += nums[i-1]
         return max(nums)
+
+"""
+If we want to find out the starting and ending index of the maximum subarray as well, 
+we could write the code like this: 
+"""
+
+class Solution:
+    def maxSubArray(self, nums):
+        max_ending_here = nums[0]
+        start_old = start = end = max_so_far = 0
+        for i, x in enumerate(nums[1:], 1):
+            max_ending_here = max(x, max_ending_here + x)
+            max_so_far = max(max_so_far, max_ending_here)
+            if max_ending_here < 0:
+                start = i + 1
+            elif max_ending_here == max_so_far:
+                start_old = start
+                end = i
+        return (max_so_far , start_old, end)
