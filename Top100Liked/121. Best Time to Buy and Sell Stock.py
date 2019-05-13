@@ -1,4 +1,6 @@
 """
+Idea comes from: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/discuss/39038/
+
 The logic to solve this problem is same as "max subarray problem" using Kadane's Algorithm.
 
 Here, the logic is to calculate the difference (max_cur + prices[i] - prices[i-1]) of the original array, 
