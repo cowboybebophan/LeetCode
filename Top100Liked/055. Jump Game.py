@@ -12,3 +12,17 @@ class Solution:
                 return False
             max_reach = max(max_reach, i + n)
         return True
+
+""" 
+Going backwards:
+"""
+class Solution:
+    def canJump(self, nums):
+        goal = len(nums) - 1
+        for i in range(len(nums))[::-1]:
+            if i + nums[i] >= goal:
+                goal = i
+        return not goal
+
+ 
+ 
