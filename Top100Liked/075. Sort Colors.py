@@ -1,6 +1,7 @@
 """
-This is a dutch partitioning problem. We are classifying the array into four groups: 
-red(0), white(1), unclassified, and blue(2). 
+This is a dutch partitioning problem: https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+
+We are classifying the array into four groups: red(0), white(1), unclassified, and blue(2). 
 
 Initially we group all elements into unclassified. 
 We iterate from the beginning as long as the scanner pointer p is less than the blue pointer p2.
