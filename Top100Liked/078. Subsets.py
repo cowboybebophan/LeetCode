@@ -12,9 +12,10 @@ Combine them, now we have [ [ ], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3] ]
 """
 
 # Iteratively
-def subsets(self, nums):
-    res = [[]]
-    for num in sorted(nums):
-        res += [item+[num] for item in res]
-    return res
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = [[]]
+        for num in nums:
+            res += [item+[num] for item in res]
+        return res
     
