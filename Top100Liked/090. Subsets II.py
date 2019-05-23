@@ -16,11 +16,10 @@ the subsets in res we will have duplicates subsets in res.
 There are two ways to do so:
 ///
 In the first solution:
-we use { for j in range(len(res) - l, len(res)) } to get all the subsets that are created by the 
-previous duplicate number.
+we use { for j in range(len(res) - l, len(res)) } to get the subsets that are created by nums[i-1].
 
 When {i == 0 or nums[i] != nums[i - 1]} :
-we update l = len(res), where we are actually adding the number to all the subsets;
+we update l = len(res), where we are actually adding the number to all the subsets in res;
 
 In the duplicate case(nums[i] == nums[i-1]):
 we keep l as the length of res before we add the duplicate number so that we can get the subsets that are created by nums[i-1]
