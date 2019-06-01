@@ -1,5 +1,11 @@
 """
 https://leetcode.com/problems/binary-tree-inorder-traversal/discuss/31381/Python-recursive-and-iterative-solutions.
+
+We are asked to return the inorder traversal here.
+
+However, if we are asked to return a preorder traversal or a postorder traversal, we only need to change 
+the order of our statements: check problem 144 and 145.
+
 """
 
 # Definition for a binary tree node.
