@@ -15,6 +15,11 @@ the order of our statements: check problem 144 and 145.
 #         self.left = None
 #         self.right = None
 
+# 1 line solution
+class Solution:
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right) if root else []
+
 # Iteratively
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
