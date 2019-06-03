@@ -1,6 +1,10 @@
 """
 Similar to problem 94 and 145.
 """
+# 1 line solution
+class Solution:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right) if root else []
 
 # Iterratively
 class Solution:
