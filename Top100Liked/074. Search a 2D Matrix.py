@@ -1,5 +1,5 @@
 """
-Treat the 2D matrix as a long sorted list.
+Treat the 2D matrix as a long sorted list and then use binary search.
 We set low and high as the first and last index, then we get the number of the middle index by using
 num = matrix[mid//cols][mid%cols]
 
