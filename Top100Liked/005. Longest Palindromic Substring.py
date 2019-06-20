@@ -2,8 +2,10 @@ class Solution:
     def longestPalindrome(self, s):
         res = ""
         for i in range(len(s)):
-            res = max(self.helper(s, i, i), self.helper(s, i,i+1), res, key = len) # (i,i)和(i,i+1) 分别为odd和even的情况
-        return res                                                                 # 比如“aba”和“abba”
+            odd = self.helper(s, i, i)
+            even = self.helper(s, i,i+1)  # (i,i)和(i,i+1) 分别为odd和even的情况, 比如“aba”和“abba”                                                                
+            res = max(odd, even, res, key = len) 
+        return res                                                             
     
     def helper(self, s, l, r):
         stop = 0
