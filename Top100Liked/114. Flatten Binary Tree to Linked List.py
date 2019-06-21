@@ -6,6 +6,8 @@ https://www.youtube.com/watch?v=NHdrzNpt1ZI&list=LLFMFwZhJPiOjNGDHQTAKqwg&index=
 但是我们知道我们函数功能是flatten一个二叉树为链表，所以我们姑且认为这时候根的左右子树已经被flatten。
 然后我们先用一个tmpNode储存右子树，并把左子树移到右边同时清空根的左子树，然后将保存的右子树链接到之前左子树的最后面，完成转换。
 
+反之亦然：先将右子树移到左子树的末尾，然后一起移动到根的右子树处。
+
 “”“
 
 class Solution:
