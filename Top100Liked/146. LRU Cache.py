@@ -10,12 +10,12 @@ Solutin 2 uses deque: we remove and append back the key(on the right side of the
 """
 # Solution 1
 
-from collections import OrderedDict
+import collections
 
 class LRUCache:
 
     def __init__(self, capacity):
-        self.dict = OrderedDict()     # Using OrderedDict() to rememder the order in which the keys were added.
+        self.dict = collections.OrderedDict()     # Using OrderedDict() to rememder the order in which the keys were added.
         self.remain = capacity
         
     def get(self, key):
