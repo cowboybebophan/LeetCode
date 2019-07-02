@@ -6,7 +6,7 @@ The difference is that we are asked to return the ordering of the courses.
 Here we can just return the list we are maintaining: zeroDegree. 
 
 We append a course number to zeroDegree everytime a course doesn't require any prerequisite course anymore.
-Therefore, zerDegree stores the ordering of the courses we take.
+Therefore, zeroDegree stores the ordering of the courses we take.
 
 """
 
