@@ -1,3 +1,36 @@
+# Iteratively using stack
+
+class Solution:
+    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+        res = []
+        stack = [(root, sum, [])]
+        
+        while stack:
+            node, target, path = stack.pop()
+            if node:
+                if node.val == target and not (node.left or node.right):
+                    res.append(path + [node.val])
+                stack.append((node.left, target - node.val, path + [node.val]))
+                stack.append((node.right, target - node.val, path + [node.val]))
+        return res
+
+# Recursivly using dfs
+
+class Solution:
+    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+        res = []
+        self.dfs(root, sum, [], res)
+        return res
+    
+    def dfs(self, node, target, path, res):
+        if node:
+            if node.val == target and not (node.left or node.right):
+                res.append(path + [node.val])
+            self.dfs(node.right, target - node.val, path + [node.val], res)
+            self.dfs(node.left, target - node.val, path + [node.val], res)
+         
+ # Solution 3
+
 class Solution:
     def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
         if not root:
@@ -21,4 +54,4 @@ class Solution:
     def match(self, current, child, target):
         if not (child.left or child.right) and current + child.val == target:
             return True
-        return False
+        return False    
