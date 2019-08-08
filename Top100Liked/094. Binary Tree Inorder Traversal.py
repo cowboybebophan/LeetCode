@@ -34,8 +34,8 @@ class Solution:
                 root = tmpNode.right
         return res
  
- # Recursively
- class Solution:
+# Recursively
+class Solution:
     def inorderTraversal(self, root):
         res = []
         self.helper(root, res)
