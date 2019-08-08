@@ -3,9 +3,9 @@
 
 # Binary Tree Traversal
   094 Inorder     
-  102 Level Order . 
-  144 Preorder . 
-  145 Postorder . 
+  102 Level Order   
+  144 Preorder     
+  145 Postorder    
 
 # Construct Binary Tree From Traversal
   105 Construct Binary Tree from Preorder and Inorder Traversal . 
