@@ -11,12 +11,12 @@ Python's list comprehension makes it easier to deal with many conditions in a co
 # Solution 1
 class Solution:
     def levelOrder(self, root):
-        ans, level = [], [root]
+        res, level = [], [root]
         while root and level:
-            ans.append([node.val for node in level])
+            res.append([node.val for node in level])
             LRpair = [(node.left, node.right) for node in level]
-            level = [leaf for LR in LRpair for leaf in LR if leaf]
-        return ans
+            level = [node for pair in LRpair for node in pair if node]
+        return res
         
 # Solution 2
 class Solution:
