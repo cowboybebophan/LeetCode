@@ -2,7 +2,7 @@
   Solutions for LeetCode problems.
 
 # Binary Tree Traversal
-  094 Inorder . 
+  094 Inorder     
   102 Level Order . 
   144 Preorder . 
   145 Postorder . 
