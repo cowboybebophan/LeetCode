@@ -25,15 +25,13 @@ class Solution:
             
 # Iteratively (Cheating)
 class Solution:
-    def postorderTraversal(self, root):
-        res, stack = [], []
-        while root or stack:
-            if root:
-                res.append(root.val)
-                stack.append(root)
-                root = root.right
-            else:
-                tmpNode = stack.pop()
-                root = tmpNode.left
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        res, stack = [], [root]
+        while stack:
+            node = stack.pop()
+            if node:
+                res.append(node.val)
+                stack.append(node.left)
+                stack.append(node.right)
         return res[::-1]
 
