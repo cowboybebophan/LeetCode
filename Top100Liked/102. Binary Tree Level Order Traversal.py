@@ -8,7 +8,28 @@ Python's list comprehension makes it easier to deal with many conditions in a co
 
 """
 
-# Solution 1
+# BFS using deque
+from collections import deque
+
+class Solution:
+    def levelOrder(self, root):
+        if not root:
+            return []
+        
+        queue, res = deque([root]), []
+        while queue:
+            level, size = [], len(queue)
+            for _ in range(size):
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                level.append(node.val)
+            res.append(level)
+        return res
+
+# list comprehension
 class Solution:
     def levelOrder(self, root):
         res, level = [], [root]
@@ -18,7 +39,7 @@ class Solution:
             level = [node for pair in LRpair for node in pair if node]
         return res
         
-# Solution 2
+# list comprehension
 class Solution:
     def levelOrder(self, root):
         ans, level = [], [root]
@@ -27,7 +48,7 @@ class Solution:
             level = [leaf for node in level for leaf in (node.left, node.right) if leaf]
         return ans
         
-# Solution 3
+# list comprehension
 class Solution:
     def levelOrder(self, root):
         if not root:
@@ -40,4 +61,4 @@ class Solution:
                 tmp += [node.left, node.right]
             level = [leaf for leaf in tmp if leaf]
         return ans
-    
+
