@@ -4,6 +4,21 @@ https://leetcode.com/problems/validate-binary-search-tree/discuss/32112/Learn-on
 Do an inorder traversal and then check if the traversal array is in an ascending order.
 
 """
+# Recursively
+
+class Solution:
+    def isValidBST(self, root):
+
+        def helper(node, lower = float('-inf'), upper = float('inf')):
+            if not node:
+                return True
+            if node.val <= lower or node.val >= upper:
+                return False
+            return helper(node.left, lower, node.val) and helper(node.right, node.val, upper)
+
+        return helper(root)
+
+# Iteratively
 
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
