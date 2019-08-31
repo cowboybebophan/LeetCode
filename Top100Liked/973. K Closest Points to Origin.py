@@ -76,12 +76,16 @@ import heapq
 class Solution:
     def kClosest(self, points, K):
         return heapq.nsmallest(K, points, lambda x: x[0]**2 + x[1]**2)
+
 """
 III. The last solution is based on quick sort, we can also call it quick select.
+     
+     Time Complexity: Average case : O(N)  | Worst case : O(N * N)
      
 """
 
 # Solution III
+
 class Solution:
     def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
         self.quickSort(points, 0, len(points) - 1, K)
