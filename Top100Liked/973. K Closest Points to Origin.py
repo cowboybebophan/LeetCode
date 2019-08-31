@@ -1,15 +1,19 @@
 """
-Solution 1 uses list.sort(key = ,reverse =), here we create our own key 'sortDistance' : square of the distance between 
-a point and the origin.
+https://leetcode.com/problems/k-closest-points-to-origin/discuss/220235/Java-Three-solutions-to-this-classical-K-th-problem.
 
-Solution 2 is of the same idea.
+This is a very classical problem, so-called K-th problem.
+Generally, we have 3 approaches to this kind of problem.
 
-Solution (3 and 4) uses the heapq.nsmallest(k, iterable, key = ) function in the heapq module. 
-Check https://www.geeksforgeeks.org/heap-queue-or-heapq-in-python/
-
+I. A very naive and simple solution is to sort the list based on the priority that's given by the problem: 
+   in this case, the Euclidean distance from the origin. Then we return the top k-th closest points.
+   
+   Time Complexity: O(NlogN)
+   Advantage: short, intuitive and easy to implement.
+   Disadvantage: not very efficient and have to know all of the points previously, 
+                 and unable to deal with real-time(online) case, it is an off-line solution.
 """
 
-# Solution 1
+# Solution I
 
 class Solution(object):
     def kClosest(self, points, K):
@@ -20,8 +24,7 @@ class Solution(object):
         points.sort(key = sortDistance)
         
         return points[:K]
-        
-# Solution 2
+or 
 
 class Solution(object):
     def kClosest(self, points, K):
@@ -36,25 +39,19 @@ class Solution(object):
 # list.sort() sorts the list in-place, mutating the list indices, and returns None (like all in-place operations).
 # sorted(list) returns a new sorted list, leaving the original list unaffected.
 
-# Solution 3
+"""
+II. The second solution is based on the first one. We don't have to sort all points.
+    
+    Instead, we maintain a heap of size K. We keep pushing elements into the heap untill the size of the heap reaches K.
+    When the heap size is K, we push a new element into the heap then pop out the largest elemnt in the heap so the heap size 
+    stays K.
+    
+    Time Complexity: O(NlogK), Inserting an item to a heap of size k take O(logK) time and we do this for N times.
+    Advantage: can deal with real-time(online) stream data. It does not have to know the size of the data previously.
+    Disadvantage: not the most efficient solution.
 
-import heapq
-
-class Solution:
-    def kClosest(self, points, K):
-        def distance(point):
-            return point[0]**2 + point[1]**2
-        return heapq.nsmallest(K, points, key = distance)
-        
-Or
-
-import heapq
-
-class Solution:
-    def kClosest(self, points, K):
-        return heapq.nsmallest(K, points, lambda (x,y): x**2 + y**2)
-        
-# Solution 4
+"""
+# Solution II
 
 import heapq
 
@@ -71,3 +68,44 @@ class Solution:
                 heapq.heappush(heap,(distance, x, y))
                 
         return [(x,y) for (distance, x , y) in heap]
+        
+Or
+
+import heapq
+
+class Solution:
+    def kClosest(self, points, K):
+        return heapq.nsmallest(K, points, lambda x: x[0]**2 + x[1]**2)
+"""
+III. The last solution is based on quick sort, we can also call it quick select.
+     
+"""
+
+# Solution III
+class Solution:
+    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+        self.quickSort(points, 0, len(points) - 1, K)
+        return points[:K]
+    
+    
+    def quickSort(self, points, l, r, K):
+        if l < r:
+            p = self.partition(points, l, r)
+            if p == K:
+                return
+            elif p < K:
+                self.quickSort(points, p + 1, r, K)
+            else:
+                self.quickSort(points, l, p - 1, K)
+        
+        
+    def partition(self, points, l, r):
+        pivot = points[r]
+        i = l - 1
+        
+        for j in range(l, r):
+            if (points[j][0]**2 + points[j][1]**2) < (pivot[0]**2 + pivot[1]**2):
+                i += 1
+                points[i], points[j] = points[j], points[i]
+        points[i+1], points[r] = points[r], points[i+1]
+        return i + 1
