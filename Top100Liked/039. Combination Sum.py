@@ -46,3 +46,19 @@ class Solution:
         for i, num in enumerate(candidates):
                 if num <= target:
                     self.helper(candidates[i:], target - num, res, path + [num])
+
+                    
+# Solution 3
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        self.dfs(candidates, target, 0, res, [])
+        return res
+    
+    def dfs(self,candidates, target, index, res, path):
+        if target == 0:
+            res.append(path)
+            return
+        for i in range(index, len(candidates)):
+            if candidates[i] <= target:
+                self.dfs(candidates, target - candidates[i], i, res, path+ [candidates[i]])
