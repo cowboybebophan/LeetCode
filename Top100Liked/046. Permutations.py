@@ -1,18 +1,18 @@
 """
-Use backtracking here, idea is similar to 039.Combination Sum.
-
+https://leetcode.com/problems/permutations/discuss/18296/Simple-Python-solution-(DFS).
 """
-
+# DFS + Recursion
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         res = []
-        def helper(nums, t):
-            if not nums:
-                res.append(t)
-                return
-            for i, num in enumerate(nums):
-                helper(nums[:i]+nums[i+1:], t + [num])
-        helper(nums, [])
+        self.dfs(nums, res, [])
         return res
+    
+    def dfs(self, nums, res, path):
+        if not nums:
+            res.append(path)
+            return
+        for i in range(len(nums)):
+            self.dfs(nums[:i]+ nums[i+1:], res, path + [nums[i]])
         
         
