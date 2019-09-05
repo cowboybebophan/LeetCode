@@ -1,44 +1,26 @@
 """
-https://www.cnblogs.com/zuoyuan/p/3769767.html
+https://leetcode.com/problems/word-search/discuss/27660/Python-dfs-solution-with-comments.
 
 """
-
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        
-        def dfs(x, y, word):
-            if len(word) == 0:
-                return True
-            # up
-            if x > 0 and board[x-1][y] == word[0]:
-                tmp = board[x][y]; board[x][y] = "#"
-                if (dfs(x-1, y, word[1:])):
+        rows, cols = len(board), len(board[0])
+        for i in range(rows):
+            for j in range(cols):
+                if self.dfs(board, word, 0, i, j):
                     return True
-                board[x][y] = tmp
-            # down
-            if x < (len(board)-1) and board[x+1][y] == word[0]:
-                tmp = board[x][y]; board[x][y] = "#"
-                if (dfs(x+1, y, word[1:])):
-                    return True
-                board[x][y] = tmp
-            # left
-            if y > 0 and board[x][y-1] == word[0]:
-                tmp = board[x][y]; board[x][y] = "#"
-                if (dfs(x, y-1, word[1:])):
-                    return True
-                board[x][y] = tmp
-            # right
-            if y < len(board[0])-1 and board[x][y+1] == word[0]:
-                tmp = board[x][y]; board[x][y] = "#"
-                if (dfs(x, y+1, word[1:])):
-                    return True
-                board[x][y] = tmp
-            return False
-        
-        for i in range(len(board)):
-            for j in range(len(board[0])):
-                if board[i][j] == word[0]:
-                    if (dfs(i, j, word[1:])):
-                        return True
         return False
-            
+    
+    def dfs(self, board, word, pos, i, j):
+        if pos == len(word):
+            return True
+        if not (0<= i < len(board)) or not (0<= j < len(board[0])) or board[i][j] != word[pos]:
+            return False
+        tmp = board[i][j]
+        board[i][j] = '#'
+        res = self.dfs(board, word, pos + 1, i + 1, j) or \
+              self.dfs(board, word, pos + 1, i - 1, j) or \
+              self.dfs(board, word, pos + 1, i, j + 1) or \
+              self.dfs(board, word, pos + 1, i, j - 1)
+        board[i][j] = tmp
+        return res
