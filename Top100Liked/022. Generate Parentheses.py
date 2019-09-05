@@ -1,5 +1,20 @@
-# recursively
+# DFS + Recursion
 
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        self.dfs(n, n, res, '')
+        return res
+    
+    def dfs(self, left, right, res, path):
+        if left:
+            self.dfs(left - 1, right, res, path + '(')
+        if left < right:
+            self.dfs(left, right - 1, res, path + ')')
+        if not right:
+            res.append(path)
+            
+# Solution 2
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         def generate(p, left, right, parens = []):
