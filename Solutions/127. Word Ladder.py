@@ -5,7 +5,7 @@ class Solution:
         wordList = set(wordList)    # Avoid TLE 为避免超时使用set比较方便
         q = collections.deque([(beginWord, 1)])
         alpha = string.ascii_lowercase
-        # 为何是quene而不是stack，因為先进來的字找到继任者后就要排除
+        # 为何是queue而不是stack，因為先进來的字找到继任者后就要排除
         # 下一个选项是根据新找到的字所衍伸的，而不是根据最早的
         while q:
             word, length = q.popleft()
