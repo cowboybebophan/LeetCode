@@ -35,3 +35,14 @@ class Solution:
                 stack.append(node.right)
         return res[::-1]
 
+# Iteratively 2
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        res, stack = collections.deque([]), [root]
+        while stack:
+            node = stack.pop()
+            if node:
+                res.appendleft(node.val)
+                stack.append(node.left)
+                stack.append(node.right)
+        return res
