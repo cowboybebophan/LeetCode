@@ -28,25 +28,15 @@ class Solution:
                 level.append(node.val)
             res.append(level)
         return res
-
+        
 # list comprehension
 class Solution:
     def levelOrder(self, root):
         res, level = [], [root]
         while root and level:
             res.append([node.val for node in level])
-            LRpair = [(node.left, node.right) for node in level]
-            level = [node for pair in LRpair for node in pair if node]
+            level = [child for node in level for child in (node.left, node.right) if child]
         return res
-        
-# list comprehension
-class Solution:
-    def levelOrder(self, root):
-        ans, level = [], [root]
-        while root and level:
-            ans.append([node.val for node in level])
-            level = [leaf for node in level for leaf in (node.left, node.right) if leaf]
-        return ans
         
 # list comprehension
 class Solution:
