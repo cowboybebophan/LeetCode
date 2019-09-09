@@ -15,21 +15,14 @@ class Solution:
         return True
       
 # Recursively
+class Solution:
     def isSymmetric(self, root):
-        def isSym(L,R):
-            if L and R and L.val == R.val: 
-                return isSym(L.left, R.right) and isSym(L.right, R.left)
-            return L == R   # means L == None == R
-        return not root or isSym(root.left, root.right)
+        if not root:
+            return True
+        return self.helper(root.left, root.right)
     
-    or
-  
-    def isSymmetric(self, root):
-        def isSym(L,R):
-            if L and R and L.val == R.val: 
-                return isSym(L.left, R.right) and isSym(L.right, R.left)
-            elif L == R == None:
-                return True
-            else:
-                return False
-        return not root or isSym(root.left, root.right)
+    def helper(self, L, R):
+        if L and R:
+            return L.val == R.val and self.helper(L.left, R.right) and self.helper(L.right, R.left)
+        else:
+            return L == R
