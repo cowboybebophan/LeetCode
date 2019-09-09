@@ -14,10 +14,10 @@ class Solution:
 # Solution 2
 class Solution(object):
     def postorder(self, root):
-        stack, res = [root], []
+        stack, res = [root], collections.deque([])
         
         while stack and root:
-            n = stack.pop()
-            res.insert(0, n.val)
-            stack += n.children
+            node = stack.pop()
+            res.appendleft(node.val)
+            stack += node.children
         return res
