@@ -1,12 +1,12 @@
 # Brute Force
 
 class Solution:
-    def pathSum(self, root, sum):
-        if root:
+    def pathSum(self, root, sum): # Returns the total number of all valid paths started from every node in the tree.
+        if root:                  
             return self.findPath(root, sum) + self.pathSum(root.left, sum) + self.pathSum(root.right, sum)
         return 0
         
-    def findPath(self, node, target):
+    def findPath(self, node, target):   # Returns the number of all valid paths started from a certain node.
         if node:
             return int(node.val == target) + self.findPath(node.left, target - node.val) + self.findPath(node.right, target - node.val)
         return 0
