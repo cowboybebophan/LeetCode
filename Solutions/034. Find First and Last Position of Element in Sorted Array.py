@@ -13,17 +13,19 @@ which of course is one index behind the last index containing target, so all I h
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        def search(n):
-            lo, hi = 0, len(nums)
-            while lo < hi:
-                mid = (lo + hi) // 2
-                if nums[mid] >= n:
-                    hi = mid 
-                else:
-                    lo = mid + 1
-            return lo
-        lo = search(target)
-        return [lo, search(target + 1) - 1] if target in nums[lo:lo+1] else [-1,-1]
+        low = self.binarySearch(nums, target)
+        high = self.binarySearch(nums, target + 1)
+        return [low, high - 1] if target in nums[low:low+1] else [-1, -1]
+    
+    def binarySearch(self, nums, target):
+        low, high = 0, len(nums) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            if nums[mid] >= target:
+                high = mid - 1
+            else:
+                low = mid + 1
+        return low
         
         # Here, we write (target in nums[lo:lo+1]) instead of (target == nums[lo])
         # to avoid the cases when lo is outside [0, len(nums)-1]; for example: search(5) in [2,3,4], returns lo = 3. 
