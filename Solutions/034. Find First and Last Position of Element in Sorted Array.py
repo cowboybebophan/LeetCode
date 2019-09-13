@@ -10,7 +10,7 @@ Otherwise, I ask search(target+1), which tells me the first index where I could 
 which of course is one index behind the last index containing target, so all I have left to do is subtract 1.
 
 """
-
+# Solution 1
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         low = self.binarySearch(nums, target)
@@ -32,3 +32,35 @@ class Solution:
         # The condition 'target in nums[lo:lo+1]' is valid even when lo exceeds the length of nums, it returns False.
         # For example: nums = [1,2,3] , ' 1 in nums[4:5] ' returns False. 
         # Works for when nums=[] as well.
+
+# Solution 2
+
+"""
+https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/discuss/14714/16-line-Python-solution-symmetric-and-clean-binary-search-52ms
+"""
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        left = self.findLeft(nums, target)
+        right = self.findRight(nums, target)
+        return [left, right] if left <= right else [-1, -1]
+    
+    def findLeft(self, nums, target):
+        low, high = 0, len(nums) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            if nums[mid] >= target:
+                high = mid - 1
+            else:
+                low = mid + 1
+        return low
+    
+    def findRight(self, nums, target):
+        low, high = 0, len(nums) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            if nums[mid] > target:
+                high = mid - 1
+            else:
+                low = mid + 1
+        return high
+        
