@@ -23,3 +23,23 @@ Therefore, we update hi to the left side of mid.
 Condition2 represents when target is on the right side of mid, here we update lo to the right side of mid.
 
 """
+Or
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        lo, hi = 0, len(nums) - 1
+        while lo <= hi:
+            mid = (lo + hi) // 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] <= nums[hi]:
+                if nums[mid] < target <= nums[hi]: # 挑选简单的condition先写，把复杂的留到else里
+                    lo = mid + 1
+                else:
+                    hi = mid - 1
+            elif nums[mid] >= nums[lo]:
+                if nums[lo] <= target < nums[mid]:
+                    hi = mid - 1
+                else:
+                    lo = mid + 1
+        return -1
