@@ -1,4 +1,6 @@
-
+"""
+在传统的二分搜索的基础上做一些改进：对于什么时候移动lo和hi指针做一个细致的场景区分。
+"""
 class Solution:
     def search(self, nums, target):
         lo, hi = 0, len(nums) - 1
