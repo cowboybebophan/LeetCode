@@ -1,3 +1,7 @@
+"""
+Similar to 162. Find Peak Element.
+"""
+
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
         lo, hi = 0, len(nums) - 1
