@@ -13,3 +13,12 @@ class Solution:
         letters.sort(key = lambda x: x.split()[1:])
         res = letters + digits
         return res
+
+# or
+
+class Solution(object):
+    def reorderLogFiles(self, logs):
+        def f(log):
+            identifier, content = log.split(" ", 1)
+            return (0, content, identifier) if content.split()[0].isalpha() else (1,)
+        return sorted(logs, key = f)
