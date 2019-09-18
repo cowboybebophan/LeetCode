@@ -1,24 +1,10 @@
-"""
-Problem discription:
-
-Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
-Example:
-Input:
-[
-  1->4->5,
-  1->3->4,
-  2->6
-]
-Output: 1->1->2->3->4->4->5->6
-"""
-
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
 # Using sort()
+
+# Time complexity : O(N\log N)O(NlogN) where NN is the total number of nodes.
+# 1. Collecting all the values costs O(N)O(N) time.
+# 2. A stable sorting algorithm costs O(N\log N)O(NlogN) time.
+# 3. Iterating for creating the linked list costs O(N)O(N) time.
+
 class Solution(object):    
     def mergeKLists(self, lists):
         l = []
@@ -33,7 +19,13 @@ class Solution(object):
             head = head.next
         return dummy.next
       
-# Using PriorityQueue      
+# Using PriorityQueue 
+
+# Time complexity : O(N\log k)O(Nlogk) where \text{k}k is the number of linked lists.
+# 1. The comparison cost will be reduced to O(\log k)O(logk) for every pop and insertion to priority queue. 
+#    But finding the node with the smallest value just costs O(1)O(1) time.
+# 2. There are NN nodes in the final linked list.
+
 from heapq import heappush, heappop, heapreplace, heapify
 
 class Solution:
