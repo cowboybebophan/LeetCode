@@ -35,7 +35,7 @@ class Solution:
                     zeroDegree.append(j)
         return len(zeroDegree) == n
 
-# DFS
+# Topological Sorting + DFS
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
