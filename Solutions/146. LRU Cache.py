@@ -15,8 +15,8 @@ import collections
 class LRUCache:
 
     def __init__(self, capacity):
-        self.dict = collections.OrderedDict()     # Using OrderedDict() to rememder the order in which the keys were added.
-        self.remain = capacity
+        self.dict = collections.OrderedDict()     # Using OrderedDict() to remember the order in which the keys were added.
+        self.k = capacity
         
     def get(self, key):
         if key not in self.dict:
@@ -28,11 +28,8 @@ class LRUCache:
     def put(self, key, value):
         if key in self.dict:
             self.dict.pop(key)
-        else:
-            if self.remain > 0:
-                self.remain -= 1
-            else:
-                self.dict.popitem(last = False) 
+        elif len(self.dict) == self.k:
+            self.dict.popitem(last = False) 
         self.dict[key] = value
         
 # Solution 2
