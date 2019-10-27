@@ -21,3 +21,24 @@ class Solution:
                 copy.neighbors.append(self.deepCopy(n))
         self.visited[node] = copy
         return copy
+
+# BFS
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        if not node:
+            return None
+        nodeCopy = Node(node.val, [])
+        q = collections.deque([node])
+        visited = {node: nodeCopy}
+        
+        while q:
+            node = q.popleft()
+            for neighbor in node.neighbors:
+                if neighbor not in visited:
+                    neighborCopy = Node(neighbor.val, [])
+                    visited[neighbor] = neighborCopy
+                    visited[node].neighbors.append(neighborCopy)
+                    q.append(neighbor)
+                else:
+                    visited[node].neighbors.append(visited[neighbor])
+        return nodeCopy
