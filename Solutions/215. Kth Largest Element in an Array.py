@@ -1,9 +1,16 @@
-# Method 1  O(NlogN)
+# Method 1
 # Using build-in fuction sorted/sort
+# list.sort() is a in-place operation,  sorted(list) returns a new sorted list
 
-class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -> int:
+class Solution:     # Time: O(NlogN) Space:O(N)
+    def findKthLargest(self, nums, k):
         return sorted(nums, reverse = True) [k-1]
+Or
+
+class Solution:     # Time: O(NlogN) Space:O(1)
+    def findKthLargest(self, nums, k):
+        nums.sort(reverse = True)
+        return nums[k-1]
 
 # Method 2
 # Using bulid-in fuction heapq.nlargest
