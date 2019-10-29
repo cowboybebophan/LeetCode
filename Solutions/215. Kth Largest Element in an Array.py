@@ -20,48 +20,47 @@ class Solution:
     def findKthLargest(self, nums, k):
         return heapq.nlargest(k, nums)[-1]
 
-# Method 3  O(N + kLogN)
+# Method 3  Time: O(N + kLogN) Space: O(N)
 # Using a Min-Heap to implemente a Max-Heap
 
 import heapq
 class Solution(object):
     def findKthLargest(self, nums, k):
         nums = [-num for num in nums]
-        heapq.heapify(nums)
+        heapq.heapify(nums)     # heapify a list takes O(N) time
         res = float('inf')
-        for _ in range(k):
+        for _ in range(k):      # pop the top item from a heap takes O(logN) each time
             res = heapq.heappop(nums)
         return -res
         
-# Method 4
+# Method 4  Time: Average O(N)/ Worst O(N*N) Sapce: in-palce
 # Using quickSelect/quickSort
 
 class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -> int:
-        self.quickSort(nums, 0, len(nums) - 1, k)
+    def findKthLargest(self, nums, k):
+        self.quickSelect(nums, 0, len(nums) - 1, k)
         return nums[k-1]
-    
     
     def partition(self, nums, low, high):
         pivot = nums[high]
-        i = low - 1
-        
+        i = low
+     
         for j in range(low, high):
             if nums[j] > pivot:
-                i += 1
                 nums[j], nums[i] = nums[i], nums[j]
+                i += 1
         
-        nums[i+1], nums[high] = nums[high], nums[i+1]
-        return i + 1
+        nums[i], nums[high] = nums[high], nums[i]
+        return i
     
-    def quickSort(self, nums, low, high, k):
+    def quickSelect(self, nums, low, high, k):
         if low < high:
             p = self.partition(nums, low, high)
             if p == k - 1:
                 return
             elif p > k - 1:
-                self.quickSort(nums, low, p - 1, k)
+                self.quickSelect(nums, low, p - 1, k)
             else:
-                self.quickSort(nums, p + 1, high, k)
+                self.quickSelect(nums, p + 1, high, k)
 
  
