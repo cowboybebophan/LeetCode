@@ -3,8 +3,9 @@
 # The depth() function returns the longest path started from a certain node down to a leaf, and the depth of a certain node is 
 # defined as 1 + max(depth of node.left, depth of node.right) 
 
+
 # While we traverse through the tree and record the depth of every node, we update the longest diameter by doing
-# self.longest = max(self.longest, L + R)
+# self.longest = max(self.longest, L + R), while L + R means the longest diameter in the tree that rooted with a certain node.
 
 class Solution:
     def diameterOfBinaryTree(self, root):
