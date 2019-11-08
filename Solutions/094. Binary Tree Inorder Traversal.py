@@ -21,17 +21,23 @@ class Solution:
         return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right) if root else []
 
 # Iteratively
+# 1. Everytime we meet a node, we traverse to its deepest left child, untill there is no left child for the current node.
+# 2. Meanwhile, we push the node we visited to the stack.
+# 3. If the current node doesn't have a left child, we add the value to the answer and check if it has a right child. 
+#    If so, we do step 1 for the current node.
+
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         res, stack = [], []
-        while root or stack:
-            if root:
-                stack.append(root)
-                root = root.left
+        curr = root
+        while curr or stack:
+            if curr:
+                stack.append(curr)
+                curr = curr.left
             else:
                 tmpNode = stack.pop()
                 res.append(tmpNode.val)
-                root = tmpNode.right
+                curr = tmpNode.right
         return res
  
 # Recursively
