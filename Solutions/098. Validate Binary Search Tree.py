@@ -19,16 +19,22 @@ class Solution:
         return helper(root)
 
 # Iteratively
+# While doing inorder traversal, we check if the tree is valid.
 
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
         res, stack = [], []
-        while root or stack:
-            if root:
-                stack.append(root)
-                root = root.left
+        curr = root
+        
+        while curr or stack:
+            if curr:
+                stack.append(curr)
+                curr = curr.left
             else:
-                tmpNode = stack.pop()
-                res.append(tmpNode.val)
-                root = tmpNode.right
-        return all(res[i] < res[i+1] for i in range(len(res)-1))
+                node = stack.pop()
+                if res and node.val <= res[-1]: # Check curr node value with the last value we push into result.
+                    return False
+                else:
+                    res.append(node.val)
+                curr = node.right
+        return True
