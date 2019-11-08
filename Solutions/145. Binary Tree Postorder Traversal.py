@@ -1,9 +1,9 @@
 """
 The recursion solution is similar to problem 94 and problem 144.
 
-As for the iterative way, I modified the preorder traversal(right subtree first), then reverse the result.
+As for the iterative way, the first one strictly follows the "Left->Right->Root" order.
+For the second iterative solution, I modified the preorder traversal(right subtree first), then reverse the result.
 (feels like cheating haha) 
-
 """
 
 # 1 line solution
@@ -22,8 +22,25 @@ class Solution:
             self.helper(root.left, res)
             self.helper(root.right, res)
             res.append(root.val)
-            
-# Iteratively (Cheating)
+
+# Iteratively 1 (set flag)
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        res, stack = [], [(root, False)]
+        
+        while stack:
+            node, visited = stack.pop()
+            if node:
+                if visited:
+                    res.append(node.val)
+                else:
+                    # post-order
+                    stack.append((node, True))
+                    stack.append((node.right, False))
+                    stack.append((node.left, False))
+        return res
+    
+# Iteratively 2 (Cheating)
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         res, stack = [], [root]
@@ -34,15 +51,3 @@ class Solution:
                 stack.append(node.left)
                 stack.append(node.right)
         return res[::-1]
-
-# Iteratively 2
-class Solution:
-    def postorderTraversal(self, root: TreeNode) -> List[int]:
-        res, stack = collections.deque([]), [root]
-        while stack:
-            node = stack.pop()
-            if node:
-                res.appendleft(node.val)
-                stack.append(node.left)
-                stack.append(node.right)
-        return res
