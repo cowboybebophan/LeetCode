@@ -24,6 +24,11 @@ class Solution:
             res.append(root.val)
 
 # Iteratively 1 (set flag)
+# You can think of [(root, False)] as root's immediate children have not been visited yet.
+# If we meet a node that has a False flag, we change the flag to True and push its children into the stack.
+# The next time we meet this same node, we have already visited all of its children.
+# which means we have strictly followed the (Left -> Right -> root) order.
+
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         res, stack = [], [(root, False)]
