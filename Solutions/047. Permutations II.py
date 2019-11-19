@@ -3,7 +3,7 @@ https://leetcode.com/problems/permutations-ii/discuss/18649/Python-easy-to-under
 """
 # DFS + Recursion / Backtracking
 class Solution:
-    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+    def permuteUnique(self, nums):
         res = []
         nums.sort()
         self.dfs(nums, res, [])
