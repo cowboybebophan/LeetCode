@@ -20,7 +20,7 @@ From comment section in https://leetcode.com/problems/search-in-rotated-sorted-a
 Conidtion 1 represents when target is on the left side of mid, but target is not necessarily smaller that nums[mid]); 
 Therefore, we update hi to the left side of mid.  
 
-Condition2 represents when target is on the right side of mid, here we update lo to the right side of mid.
+Condition 2 represents when target is on the right side of mid, here we update lo to the right side of mid.
 
 """
 Or
