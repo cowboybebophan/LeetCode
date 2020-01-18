@@ -21,7 +21,7 @@ class Solution:
         return heapq.nlargest(k, nums)[-1]
 
 # Method 3  Time: O(N + kLogN) Space: O(N)
-# Using a Min-Heap to implemente a Max-Heap
+# Using a Min-Heap to implement a Max-Heap
 
 import heapq
 class Solution(object):
